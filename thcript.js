@@ -19,7 +19,7 @@ var global_bindings =    {
                         "car": function(x)      { argsCheck(1, x); return x[0][0]; },
                         "cdr": function(x)      { argsCheck(1, x); return x[0].slice(1); },
                         "list": function(x)     { return x; },
-                        "null?": function(x)    { argsCheck(1, x); return x[0] === []; },
+                        "null?": function(x)    { argsCheck(1, x); return x[0].length === 0; },
                         "list?": function(x)    { argsCheck(1, x); return x[0] instanceof Array; },
                         "symbol?": function(x)  { argsCheck(1, x); return typeof(x[0]) === "string"; },
                         "append":   function(x) {
