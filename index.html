@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Thcript -- Lisp in JavaScript</title>
+        <link href="css/normalize.css" rel="stylesheet" media="screen">
+        <style type="text/css">
+            #container {
+                width: 960px;
+                margin: 0 auto;
+            }
+            #container h1, #container h2  {
+                text-align: center;
+                margin-bottom: 0;
+            }
+            #container h2 {
+                margin-top: 3px;
+            }
+            #container input {
+                margin: 0 auto;
+                text-align: center;
+            }
+            #console {
+                width: 100%;
+                border-radius: 5px;
+                border: 1px solid black;
+                word-wrap: break-word;
+                background-color: #ddd;
+            }
+
+            /* jQuery console */
+            #console div.jquery-console-inner { 
+                width:95%; 
+                margin: 0 auto;
+                height:200px; 
+                background:#ddd; 
+                padding:0.5em;
+                overflow:auto 
+            }
+            #console div.jquery-console-prompt-box { 
+                color:#333; 
+                font-family:monospace; 
+            }
+            #console div.jquery-console-focus span.jquery-console-cursor { 
+                background:#fefefe; 
+                color:#ddd; 
+                font-weight:bold 
+            }
+            #console div.jquery-console-message { 
+                color: blue;
+                font-size: 0.8em;
+            }
+            #console div.jquery-console-message span.error { 
+                color: red;
+            }          
+            #console div.jquery-console-message-error { 
+                color:#ef0505;  
+                font-family:sans-serif;     
+                font-weight:bold;
+                padding:0.1em; 
+            }
+            #console div.jquery-console-message-value { 
+                color:#1ad027; 
+                font-family:monospace;
+                padding:0.1em; 
+            }
+            #console div.jquery-console-message-type { 
+                color:#52666f; 
+                font-family:monospace;
+                padding:0.1em; 
+            }
+            #console span.jquery-console-prompt-label { 
+                font-weight:bold 
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <h1>Thcript.js</h1>
+            <h2>Lisp in JavaScript</h2>
+            <input type="submit" id="reset" value="Reset global environment" />
+            <div id="console"></div>
+            <p></p>
+        </div>
+        <script src="global_functions/math.js" type="text/javascript"></script>
+        <script type="text/javascript" src="thcript.js"></script>
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery.console.js"></script>
+        <script type="text/javascript">
+$(document).ready(function(){
+/* First console */
+    var console1 = $('#console');
+    var controller1 = console1.console({
+        promptLabel: '>> ',
+        commandValidate:function(line){
+            if (line == "") return false;
+            else return true;
+        },
+        commandHandle:function(line){
+            return exec(line);
+        },
+        autofocus:true,
+        animateScroll:true,
+        promptHistory:true,
+    });
+});
+
+$("#reset").click(function() {
+    init_env();
+});
+        </script>
+    </body>
+</html>
