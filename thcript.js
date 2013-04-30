@@ -49,7 +49,7 @@ function throwLispError(type) {
 function argsCheck(n, argsList) {
     if (argsList.length !== n) {
         throw new LispError(
-            arguments.callee.caller.name + " takes " + n + " arguments, " + argsList.length + " given."
+            (arguments.callee.caller.name || "function") + " takes " + n + " arguments, " + argsList.length + " given."
             )
     }
 }
