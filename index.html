@@ -101,7 +101,6 @@ $(document).ready(function(){
         promptLabel: '>> ',
         commandValidate:function(line){
             if (line == "") return false;
-            if (countChar("(", line) !== countChar(")", line)) { $('#container p').text("paren problem"); return false; }
             else return true;
         },
         commandHandle:function(line){
@@ -116,18 +115,6 @@ $(document).ready(function(){
 $("#reset").click(function() {
     init_env();
 });
-
-
-function countChar(chr, str) {
-    var index = -1;
-    var count = -1;
-    while (true) {
-        count++;
-        index = str.indexOf(chr, index + 1);
-        if (index === -1) break;
-    }
-    return count;
-}
         </script>
     </body>
 </html>

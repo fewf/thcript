@@ -175,6 +175,7 @@ parse = read;
 
 function tokenize(s) {
     // convert a string into a list of tokens
+    if (countChar("(", s) !== countChar(")", s)) throw new LispError("Paren Problems");
     return s.replace(/\s*\(\s*/g, ' ( ').replace(/\s*\)\s*/g, ' ) ').trim().split(/\s+/);
 }
 
@@ -210,4 +211,16 @@ function atom(token) {
 function to_string(exp) {
     // Convert an array back into a Lisp-readable string.
     return (exp instanceof Array) ? '(' + exp.map(to_string).join(" ") + ')' : String(exp);
+}
+
+
+function countChar(chr, str) {
+    var index = -1;
+    var count = -1;
+    while (true) {
+        count++;
+        index = str.indexOf(chr, index + 1);
+        if (index === -1) break;
+    }
+    return count;
 }
