@@ -131,6 +131,7 @@ function eval(x, env) {
         var exp = x[2];
         return function (args) { return eval(exp, new Env(vrbl, args, env)); };    
     } else if (x[0] === "let") {
+        if (x.length !== 3) { throwLispError(x[0]); }
         var bindings = x[1];
         var exp = x[2];
         var parms = [];
